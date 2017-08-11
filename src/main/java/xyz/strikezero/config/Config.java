@@ -8,6 +8,8 @@ import xyz.strikezero.cache.Cache;
 import xyz.strikezero.cache.FIFO;
 import xyz.strikezero.cache.LRU;
 import xyz.strikezero.index.Index;
+import xyz.strikezero.summary.BM25;
+import xyz.strikezero.summary.Summary;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,6 +28,7 @@ public class Config {
     public static Cache CACHE = null;
     public static int MAX_CACHE_NUM;
     public static int PER_QUERY_CACHE_MULTIPLE_NUM;
+    public static Summary SUMMARY;
 
     static {
         Index.getInstance().setPath("data/index");
@@ -41,6 +44,8 @@ public class Config {
         MAX_CACHE_NUM = 10;// cache 10 queries
         PER_QUERY_CACHE_MULTIPLE_NUM = 3;// example: if query for 10 pages, we cache 3*10 pages
         CACHE = new LRU();
+
+        SUMMARY = new BM25();
     }
 
     public static void initialize(){
